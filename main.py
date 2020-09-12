@@ -18,6 +18,8 @@ def soulseek_file_config(filename):
     Soulseek file configuration test.
     '''
     print("hi I'm a file:\n\t{filename}".format(filename=filename))
+    if "__MACOSX" in filename:
+        return
     file_info = FileInfoFactory.construct_file_info(filename)
     if file_info is not None and file_info.is_audio_file():
         artist = file_info.get_artist()

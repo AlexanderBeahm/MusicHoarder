@@ -58,4 +58,5 @@ def __replace_special_characters(value):
     Replace any special characters in string that will break file/folder conventions.
     '''
     value = value.replace('?', '')
+    value = value.replace('/', '')
     return value
