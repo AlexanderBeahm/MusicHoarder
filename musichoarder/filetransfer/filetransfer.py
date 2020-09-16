@@ -59,4 +59,9 @@ def __replace_special_characters(value):
     '''
     value = value.replace('?', '')
     value = value.replace('/', '')
+    value = value.replace('>', '')
+    value = value.replace('\'', '')
+    value = value.replace('<', '')
+    value = value.replace(':', '')
+    value = value.replace('|', '')
     return value
