@@ -46,7 +46,7 @@ def __assemble_file_path(fileinfo, target_directory):
     artist = __replace_special_characters(artist)
     title = __replace_special_characters(title)
     year = __replace_special_characters(year)
-    track = __replace_special_characters(track)
+    track = __extract_track_value(track)
 
     extension = fileinfo.get_file_extension()
     
@@ -58,4 +58,21 @@ def __replace_special_characters(value):
     Replace any special characters in string that will break file/folder conventions.
     '''
     value = value.replace('?', '')
+    value = value.replace('/', '')
+    value = value.replace('>', '')
+    value = value.replace('\'', '')
+    value = value.replace('<', '')
+    value = value.replace(':', '')
+    value = value.replace('|', '')
+    value = value.replace('*', '')
+    value = value.replace('"', '')
+    value = value.replace("[", '')
+    value = value.replace("]", '')
     return value
+
+def __extract_track_value(value):
+    '''
+    Replace/extract the actual track number given a forward/backward slash in the track number.
+    '''
+    value = value.split('/')[0]
+    value = __replace_special_characters(value)
