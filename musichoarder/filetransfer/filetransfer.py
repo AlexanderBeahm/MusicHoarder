@@ -17,7 +17,7 @@ def unzip_file(fileinfo, target_directory):
     Unzips files to the target directory.
     '''
     with zipfile.ZipFile(fileinfo.filename, 'r') as zip_ref:
-        zip_ref.extractall(target_directory)
+        zip_ref.extractall(os.path.join(target_directory, os.path.splitext(os.path.split(fileinfo.get_filename())[1])[0]))
 
 def __assemble_file_path(fileinfo, target_directory):
     '''
@@ -40,7 +40,7 @@ def __assemble_file_path(fileinfo, target_directory):
 
     title = fileinfo.get_title()
     if title == '' or title == None :
-        title =  os.path.split(os.path.split(fileinfo.getfile())[1])[1]
+        title =  os.path.split(os.path.split(fileinfo.get_filename())[1])[1]
     
     album = __replace_special_characters(album)
     artist = __replace_special_characters(artist)

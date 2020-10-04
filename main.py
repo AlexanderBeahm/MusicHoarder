@@ -12,6 +12,7 @@ For later when I implement CLI
 '''
 
 music_library_path = 'E:\\Music\\MusicLibrary'
+zipped_staging_path = 'E:\\Music\\ToBeAdded\\unzipped'
 
 def soulseek_file_config(filename):
     '''
@@ -30,7 +31,9 @@ def soulseek_file_config(filename):
         print("hi I'm an audio file {0}\n artist is {1}\n album is {2}\n title is {3}\n track-number is {4}\n.".format(filename, artist, album, title, track))
         print("this is the assembled file path, {0}".format(FileTransfer.__assemble_file_path(file_info, music_library_path)))
         FileTransfer.move_file(file_info, music_library_path)
-    
+    elif file_info.get_file_extension() == '.zip' or file_info.get_file_extension() == '.rar' or file_info.get_file_extension() == '.7z':
+        FileTransfer.unzip_file(file_info, zipped_staging_path)
+
 
 def soulseek_folder_config(foldername):
     '''
@@ -47,9 +50,11 @@ if __name__ == '__main__':
     print('Hello, world')
 
     musicpath = 'E:\\Music\\ToBeAdded\\complete'
+    zipped_path = 'E:\\Music\\ToBeAdded\\unzipped'
 
     traverser = FileTraversal(soulseek_folder_config, soulseek_file_config)
     traverser.recurse(musicpath)
+    traverser.recurse(zipped_path)
 
     #Somehow run import on MusicBee OR just have it auto-enabled
     #Assuming library data is correct...

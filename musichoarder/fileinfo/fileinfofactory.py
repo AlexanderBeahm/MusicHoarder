@@ -10,7 +10,7 @@ def construct_file_info(filepath):
     '''
     name, ext = os.path.splitext(filepath)
     if ext in __supported_audio_filetypes :
-        if(ext == '.mp3'):
+        if(ext == '.mp3' or ext == '.m4a'):
             return ID3(filepath)
         if(ext == '.flac'):
             return Lossless(filepath)
