@@ -19,6 +19,19 @@ def unzip_file(fileinfo, target_directory):
     with zipfile.ZipFile(fileinfo.filename, 'r') as zip_ref:
         zip_ref.extractall(os.path.join(target_directory, os.path.splitext(os.path.split(fileinfo.get_filename())[1])[0]))
 
+def delete_directory(directory):
+    '''
+    Deletes directory
+    '''
+    os.removedirs(directory)
+
+def delete_file(filename):
+    '''
+    Delete file
+    '''
+    if(os.path.exists(filename)):
+        os.remove(filename)
+
 def __assemble_file_path(fileinfo, target_directory):
     '''
     Assembles organized file path based on music file tag data.
