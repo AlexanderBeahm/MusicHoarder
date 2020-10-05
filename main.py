@@ -33,6 +33,9 @@ def soulseek_file_config(filename):
         FileTransfer.move_file(file_info, music_library_path)
     elif file_info.get_file_extension() == '.zip' or file_info.get_file_extension() == '.rar' or file_info.get_file_extension() == '.7z':
         FileTransfer.unzip_file(file_info, zipped_staging_path)
+        FileTransfer.delete_file(file_info.get_filename())
+    elif file_info is not None:
+        FileTransfer.delete_file(file_info.get_filename())
 
 
 def soulseek_folder_config(foldername):
@@ -40,6 +43,8 @@ def soulseek_folder_config(foldername):
     Soulseek folder configuration test.
     '''
     print("hello we're a folder:\n\t{foldername}".format(foldername=foldername))
+    if(foldername != music_library_path and foldername != zipped_staging_path):
+        FileTransfer.delete_directory(foldername)
 
 
 if __name__ == '__main__':
