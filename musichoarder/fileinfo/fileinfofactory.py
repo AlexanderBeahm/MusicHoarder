@@ -1,3 +1,4 @@
+from musichoarder.fileinfo.taghandlers.m4a import M4A
 import os
 from musichoarder.fileinfo.taghandlers.fileinfo import FileInfo
 from musichoarder.fileinfo.taghandlers.lossless import Lossless
@@ -10,8 +11,10 @@ def construct_file_info(filepath):
     '''
     name, ext = os.path.splitext(filepath)
     if ext in __supported_audio_filetypes :
-        if(ext == '.mp3' or ext == '.m4a'):
+        if(ext == '.mp3'):
             return ID3(filepath)
+        if(ext == '.m4a'):
+            return M4A(filepath)
         if(ext == '.flac'):
             return Lossless(filepath)
     return FileInfo(filepath)
