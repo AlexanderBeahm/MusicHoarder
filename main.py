@@ -43,7 +43,8 @@ def soulseek_folder_config(foldername):
     Soulseek folder configuration test.
     '''
     print("hello we're a folder:\n\t{foldername}".format(foldername=foldername))
-    FileTransfer.delete_directory(foldername)
+    if(foldername != music_library_path and foldername != zipped_staging_path):
+        FileTransfer.delete_directory(foldername)
 
 
 if __name__ == '__main__':
