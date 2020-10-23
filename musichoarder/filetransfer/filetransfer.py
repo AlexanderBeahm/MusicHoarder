@@ -23,7 +23,8 @@ def delete_directory(directory):
     '''
     Deletes directory
     '''
-    os.removedirs(directory)
+    if(os.path.exists(directory)):
+        os.removedirs(directory)
 
 def delete_file(filename):
     '''
