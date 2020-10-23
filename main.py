@@ -1,9 +1,7 @@
 #main.py
-
-from musichoarder import filetraversal
-from musichoarder.filetraversal.filetraversal import FileTraversal, FileTraversalResult
 import musichoarder.fileinfo.fileinfofactory as FileInfoFactory
 import musichoarder.filetransfer.filetransfer as FileTransfer
+from file_traversal import FileTraversal
 
 '''
 import click
