@@ -10,6 +10,8 @@ For later when I implement CLI
 '''
 
 music_library_path = 'E:\\Music\\MusicLibrary'
+complete_path = 'E:\\Music\\ToBeAdded\\complete'
+downloading_path = 'E:\\Music\\ToBeAdded\\downloading'
 zipped_staging_path = 'E:\\Music\\ToBeAdded\\unzipped'
 
 def soulseek_file_config(filename):
@@ -41,7 +43,7 @@ def soulseek_folder_config(foldername):
     Soulseek folder configuration test.
     '''
     print("hello we're a folder:\n\t{foldername}".format(foldername=foldername))
-    if(foldername != music_library_path and foldername != zipped_staging_path):
+    if(foldername != music_library_path and foldername != zipped_staging_path and foldername != complete_path and foldername != downloading_path):
         FileTransfer.delete_directory(foldername)
 
 

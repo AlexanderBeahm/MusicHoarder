@@ -87,5 +87,6 @@ def __extract_track_value(value):
     '''
     Replace/extract the actual track number given a forward/backward slash in the track number.
     '''
-    value = value.split('/')[0]
+    if('/' in value):
+        value = value.split('/')[0]
     value = __replace_special_characters(value)
