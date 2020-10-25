@@ -16,6 +16,9 @@ def unzip_file(fileinfo, target_directory):
     '''
     Unzips files to the target directory.
     '''
+    if not os.path.exists(target_directory):
+        os.mkdir(target_directory)
+    
     with zipfile.ZipFile(fileinfo.filename, 'r') as zip_ref:
         zip_ref.extractall(os.path.join(target_directory, os.path.splitext(os.path.split(fileinfo.get_filename())[1])[0]))
 
