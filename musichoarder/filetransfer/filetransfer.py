@@ -44,7 +44,6 @@ def __assemble_file_path(fileinfo, target_directory):
     if artist == '' or artist == None :
         artist = fileinfo.get_artist()
 
-    album = fileinfo.get_album()
     year = fileinfo.get_year()
 
     if year == '' or year == None :
@@ -53,11 +52,15 @@ def __assemble_file_path(fileinfo, target_directory):
     track = fileinfo.get_track()
 
     if track == '' or track == None :
-        track = ''
+        track = '1'
 
     title = fileinfo.get_title()
     if title == '' or title == None :
         title =  os.path.split(os.path.split(fileinfo.get_filename())[1])[1]
+
+    album = fileinfo.get_album()
+    if album == '' or album == None :
+        album = title
     
     album = __replace_special_characters(album)
     artist = __replace_special_characters(artist)
@@ -85,6 +88,7 @@ def __replace_special_characters(value):
     value = value.replace('"', '')
     value = value.replace("[", '')
     value = value.replace("]", '')
+    value = value.strip()
     return value
 
 def __extract_track_value(value):
@@ -94,3 +98,4 @@ def __extract_track_value(value):
     if('/' in value):
         value = value.split('/')[0]
     value = __replace_special_characters(value)
+    return value
