@@ -4,12 +4,23 @@ import musichoarder.filetransfer.filetransfer as FileTransfer
 from file_traversal import FileTraversal
 import os
 
+if not os.path.exists(os.path.join(os.getcwd(), '.env')):
+    with open(".env", "a") as config:
+        config.writelines(['MUSIC_LIBRARY_PATH=\'\'','\nMUSIC_STAGING_PATH=\'\'', '\nZIP_FILE_STAGING_PATH=\'\''])
+
 music_library_path = os.getenv('MUSIC_LIBRARY_PATH')
 complete_path = os.getenv('MUSIC_STAGING_PATH')
 zipped_staging_path = os.getenv('ZIP_FILE_STAGING_PATH')
 
-if(music_library_path == '' or complete_path == '' or zipped_staging_path == ''):
+if (music_library_path is None or music_library_path == '' 
+    or complete_path is None or complete_path == '' 
+    or zipped_staging_path is None or zipped_staging_path == ''):
     print("Please set your .env variables for music directory and staging paths.")
+    quit("Config issue, please fill out required values in .env file.")
+
+if music_library_path == complete_path or music_library_path == zipped_staging_path or complete_path == zipped_staging_path:
+    print("Please ensure each path is unique.")
+    quit("Config issue, please make each path unique in .env file.")
 
 def soulseek_file_config(filename):
     '''
@@ -52,9 +63,12 @@ if __name__ == '__main__':
     print('Hello, world! Time to open the plunder chest.')
 
     traverser = FileTraversal(soulseek_folder_config, soulseek_file_config)
-    traverser.recurse(complete_path)
-    traverser.recurse(zipped_staging_path)
+    if complete_path is not None and os.path.exists(complete_path):
+        traverser.recurse(complete_path)
+    if zipped_staging_path is not None and os.path.exists(zipped_staging_path):
+        traverser.recurse(zipped_staging_path)
 
     #Somehow run import on MusicBee OR just have it auto-enabled
     #Assuming library data is correct...
         #Somehow run import on PLEX
+    input("Press enter to exit...")
