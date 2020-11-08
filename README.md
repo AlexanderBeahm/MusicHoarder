@@ -26,7 +26,8 @@ ZIP_FILE_STAGING_PATH='E:\\Music\\ToBeAdded\\unzipped'
 
 **ZIP_FILE_STAGING_PATH** is the folder where your zip files will be initially extracted to before being processed in a secondary recursive run. I do realize this is a big O(2n) no no siuation but it's not like we are processing huge amounts of data here.
 
-These folder at this point in time need to be unique values.
+These listed folders at this point in time need to be unique values.
+
 ---
 
 ## How To Run
