@@ -33,41 +33,41 @@ class M4A(FileInfo):
     def get_artist(self):
         artist = self.file.tags.get('\xa9ART')
         if artist is None:
-            return None
-        return self.file.tags.get('\xa9ART').text[0]
+            return ''
+        return artist.text[0]
 
     def get_album(self):
-        artist = self.file.tags.get('\xa9alb')
-        if artist is None:
-            return None
-        return self.file.tags.get('\xa9alb').text[0]
+        album = self.file.tags.get('\xa9alb')
+        if album is None:
+            return ''
+        return album.text[0]
 
     def get_track(self):
-        artist = self.file.tags.get('sonm')
-        if artist is None:
-            return None
-        return self.file.tags.get('sonm').text[0]
+        track = self.file.tags.get('sonm')
+        if track is None:
+            return ''
+        return track.text[0]
 
     def get_title(self):
-        artist = self.file.tags.get('\xa9nam')
-        if artist is None:
-            return None
-        return self.file.tags.get('\xa9nam').text[0]
+        title = self.file.tags.get('\xa9nam')
+        if title is None:
+            return ''
+        return title.text[0]
 
     def get_album_artist(self):
         artist = self.file.tags.get('aART')
         if artist is None:
-            return None
-        return self.file.tags.get('aART').text[0]
+            return ''
+        return artist.text[0]
 
     def get_year(self):
         year = self.file.tags.get('\xa9day')
         if year is None:
-            return None
-        return self.file.tags.get('\xa9day').text[0]
+            return ''
+        return year.text[0]
 
     def get_genre(self):
         genre = self.file.tags.get('\xa9gen')
         if genre is None:
-            return None
-        return self.file.tags.get('\xa9gen').text[0]
+            return ''
+        return genre.text[0]
